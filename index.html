@@ -1,116 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sahreyar Ahmed | Software Engineer</title>
+  <title>Sahreyar Ahmed — Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0f0f0f;
-      --gray-900: #1a1a1a;
-      --gray-700: #3d3d3d;
-      --gray-500: #6b6b6b;
-      --gray-300: #c4c4c4;
-      --gray-100: #f5f5f5;
-      --white: #ffffff;
-      --accent: #2563eb;
-      --accent-light: #eff6ff;
+      --bg: #ffffff;
+      --surface: #f9f9f9;
+      --border: #eaeaea;
+      --text: #111111;
+      --muted: #777777;
+      --subtle: #aaaaaa;
+      --accent: #0070f3;
+      --accent-dim: #e8f0fe;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--black);
-      line-height: 1.6;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #ebebeb;
-      z-index: 100;
-      padding: 0 2rem;
-      height: 60px;
+      inset: 0 0 auto 0;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 5rem);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
     }
 
     .nav-logo {
+      font-size: 0.95rem;
       font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: -0.02em;
-      color: var(--black);
+      letter-spacing: -0.03em;
+      color: var(--text);
       text-decoration: none;
     }
+
+    .nav-logo span { color: var(--accent); }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
       list-style: none;
+      gap: 2.5rem;
     }
 
     .nav-links a {
-      font-size: 0.875rem;
+      font-size: 0.825rem;
       font-weight: 500;
-      color: var(--gray-500);
+      color: var(--muted);
       text-decoration: none;
-      transition: color 0.2s;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
     }
 
-    .nav-links a:hover { color: var(--black); }
+    .nav-links a:hover { color: var(--text); }
 
-    /* SECTIONS */
-    section {
-      max-width: 760px;
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 820px;
       margin: 0 auto;
-      padding: 6rem 2rem 4rem;
+      padding: 0 clamp(1.5rem, 5vw, 2rem);
     }
 
+    section { padding: 5.5rem 0; }
     section:first-of-type { padding-top: 9rem; }
 
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+    .sep {
+      height: 1px;
+      background: var(--border);
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* ── LABELS ── */
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
 
-    /* HERO */
-    #hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: 0.75rem;
+    /* ── HERO ── */
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
     }
 
-    #hero .designation {
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--gray-500);
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #16a34a;
       margin-bottom: 1.5rem;
     }
 
-    #hero p {
-      font-size: 1rem;
-      color: var(--gray-700);
-      max-width: 540px;
+    .hero-badge::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.4rem, 6vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1.08;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text .role {
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-text p {
+      font-size: 0.975rem;
+      color: #444;
+      line-height: 1.75;
+      max-width: 500px;
       margin-bottom: 2rem;
     }
 
-    .hero-links {
+    .hero-actions {
       display: flex;
       gap: 0.75rem;
       flex-wrap: wrap;
@@ -119,237 +169,341 @@
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1.25rem;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 500;
+      gap: 0.35rem;
+      padding: 0.6rem 1.35rem;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: all 0.2s;
+      transition: all 0.18s;
+      letter-spacing: -0.01em;
     }
 
-    .btn-primary {
-      background: var(--black);
-      color: var(--white);
+    .btn-dark {
+      background: var(--text);
+      color: #fff;
     }
 
-    .btn-primary:hover { background: var(--gray-900); }
+    .btn-dark:hover {
+      background: #333;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
 
-    .btn-outline {
-      border: 1px solid var(--gray-300);
-      color: var(--black);
+    .btn-ghost {
       background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
-    .btn-outline:hover { border-color: var(--black); background: var(--gray-100); }
-
-    /* DIVIDER */
-    .divider {
-      border: none;
-      border-top: 1px solid #ebebeb;
-      max-width: 760px;
-      margin: 0 auto;
+    .btn-ghost:hover {
+      border-color: #999;
+      background: var(--surface);
+      transform: translateY(-1px);
     }
 
-    /* ABOUT */
-    #about h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
+    .avatar-wrap {
+      flex-shrink: 0;
     }
 
-    #about p {
-      color: var(--gray-700);
-      margin-bottom: 0.75rem;
-      font-size: 0.975rem;
-    }
-
-    /* CURRENTLY */
-    #currently h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
-    }
-
-    .currently-list {
-      list-style: none;
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
       display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
     }
 
-    .currently-list li {
+    /* ── SECTION TITLES ── */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT ── */
+    .about-text p {
+      font-size: 0.975rem;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    /* ── CURRENTLY ── */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .status-item {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.975rem;
-      color: var(--gray-700);
+      gap: 0.85rem;
+      padding: 1rem 1.15rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
     }
 
-    .currently-list li::before {
-      content: "→";
-      color: var(--accent);
-      font-weight: 600;
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
       flex-shrink: 0;
-      margin-top: 1px;
+      margin-top: 5px;
     }
 
-    /* SKILLS */
-    #skills h2 {
-      font-size: 1.5rem;
+    .status-item span {
+      font-size: 0.875rem;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* ── SKILLS ── */
+    .skills-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .skill-group {}
+
+    .skill-group-label {
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
-    }
-
-    .skills-group {
-      margin-bottom: 1.75rem;
-    }
-
-    .skills-group h3 {
-      font-size: 0.75rem;
-      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gray-500);
+      letter-spacing: 0.1em;
+      color: var(--subtle);
       margin-bottom: 0.75rem;
     }
 
-    .skills-tags {
+    .skill-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
     }
 
-    .tag {
-      padding: 0.3rem 0.75rem;
-      background: var(--gray-100);
-      border: 1px solid #e8e8e8;
-      border-radius: 4px;
+    .chip {
+      padding: 0.35rem 0.9rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
       font-size: 0.8rem;
       font-weight: 500;
-      color: var(--gray-900);
+      color: var(--text);
+      transition: all 0.15s;
     }
 
-    /* PROJECTS */
-    #projects h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
+    .chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
     }
 
+    /* ── PROJECTS ── */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 1rem;
     }
 
     .project-card {
-      border: 1px solid #ebebeb;
-      border-radius: 8px;
-      padding: 1.25rem;
+      position: relative;
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       text-decoration: none;
       color: inherit;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--bg);
+      transition: all 0.2s;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.65rem;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,112,243,0.03) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s;
     }
 
     .project-card:hover {
-      border-color: var(--black);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-color: #c0c0c0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     }
 
-    .project-card h3 {
-      font-size: 0.925rem;
-      font-weight: 600;
-      color: var(--black);
+    .project-card:hover::before { opacity: 1; }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
     }
 
-    .project-card p {
+    .project-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .project-arrow {
+      font-size: 1rem;
+      color: var(--subtle);
+      transition: transform 0.15s, color 0.15s;
+    }
+
+    .project-card:hover .project-arrow {
+      transform: translate(2px, -2px);
+      color: var(--accent);
+    }
+
+    .project-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .project-desc {
       font-size: 0.825rem;
-      color: var(--gray-500);
+      color: var(--muted);
+      line-height: 1.6;
       flex: 1;
     }
 
     .project-lang {
-      font-size: 0.75rem;
-      font-weight: 500;
+      font-size: 0.72rem;
+      font-weight: 600;
       color: var(--accent);
-      background: var(--accent-light);
-      padding: 0.15rem 0.5rem;
-      border-radius: 3px;
+      background: var(--accent-dim);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
       width: fit-content;
     }
 
-    /* CONTACT */
-    #contact h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
+    /* ── CONTACT ── */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
     }
 
-    #contact p {
-      color: var(--gray-700);
+    .contact-intro p {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.75;
       margin-bottom: 1.5rem;
-      font-size: 0.975rem;
     }
 
-    .contact-links {
+    .contact-list {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 1rem;
     }
 
-    .contact-row {
+    .contact-item {
       display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.9rem;
+      flex-direction: column;
+      gap: 0.15rem;
     }
 
-    .contact-row .label {
-      width: 90px;
-      font-weight: 600;
-      color: var(--gray-500);
-      font-size: 0.8rem;
+    .contact-item .c-label {
+      font-size: 0.68rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
+      color: var(--subtle);
     }
 
-    .contact-row a {
-      color: var(--black);
+    .contact-item a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
       text-decoration: none;
-      border-bottom: 1px solid #e0e0e0;
-      transition: border-color 0.2s;
+      transition: color 0.15s;
     }
 
-    .contact-row a:hover { border-color: var(--black); }
+    .contact-item a:hover { color: var(--accent); }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
-      color: var(--gray-300);
-      border-top: 1px solid #ebebeb;
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 5vw, 5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    @media (max-width: 600px) {
+    footer p {
+      font-size: 0.78rem;
+      color: var(--subtle);
+    }
+
+    footer a {
+      font-size: 0.78rem;
+      color: var(--subtle);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    footer a:hover { color: var(--text); }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
       .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .avatar-wrap { display: none; }
       .projects-grid { grid-template-columns: 1fr; }
+      .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
-    <a href="#hero" class="nav-logo">Sahreyar Ahmed</a>
+    <a href="#hero" class="nav-logo">Sahreyar<span>.</span></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -359,159 +513,215 @@
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
-    <div class="section-label">Portfolio</div>
-    <h1>Sahreyar Ahmed</h1>
-    <p class="designation">BSc. Software Engineering &nbsp;·&nbsp; Sylhet, Bangladesh</p>
-    <p>Software engineering student focused on full-stack web development. I build clean, functional applications using modern JavaScript technologies.</p>
-    <div class="hero-links">
-      <a href="mailto:aniksahreyar@gmail.com" class="btn btn-primary">Get in touch</a>
-      <a href="https://github.com/anik1696" target="_blank" class="btn btn-outline">GitHub</a>
-      <a href="https://www.linkedin.com/in/sahreyar-ahmed-aa1402232" target="_blank" class="btn btn-outline">LinkedIn</a>
-    </div>
-  </section>
+  <div class="container">
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-text fade-in">
+          <div class="hero-badge">Available for opportunities</div>
+          <h1>Sahreyar Ahmed</h1>
+          <p class="role">BSc. Software Engineering &nbsp;·&nbsp; Sylhet, Bangladesh</p>
+          <p>Software engineering student specialising in full-stack web development. I build reliable, well-structured applications using modern JavaScript technologies.</p>
+          <div class="hero-actions">
+            <a href="mailto:aniksahreyar@gmail.com" class="btn btn-dark">Get in touch</a>
+            <a href="https://github.com/anik1696" target="_blank" class="btn btn-ghost">GitHub →</a>
+          </div>
+        </div>
+        <div class="avatar-wrap fade-in">
+          <div class="avatar">👨‍💻</div>
+        </div>
+      </div>
+    </section>
+  </div>
 
-  <hr class="divider"/>
+  <div class="sep"></div>
 
   <!-- ABOUT -->
-  <section id="about">
-    <div class="section-label">About</div>
-    <h2>Background</h2>
-    <p>I am a Software Engineering undergraduate with a strong foundation in object-oriented programming and hands-on experience building full-stack web applications.</p>
-    <p>I work primarily with JavaScript-based stacks — from building responsive interfaces with React and Next.js to working with server-side logic and databases. I am driven by writing code that solves real problems cleanly and efficiently.</p>
-  </section>
+  <div class="container">
+    <section id="about" class="fade-in">
+      <div class="eyebrow">About</div>
+      <h2 class="section-title">Background</h2>
+      <div class="about-text">
+        <p>I am a Software Engineering undergraduate with a strong foundation in object-oriented programming and practical experience building full-stack web applications.</p>
+        <p>I work primarily with JavaScript-based stacks — designing responsive interfaces with React and Next.js and building out server-side logic with TypeScript. I care about writing code that is clean, maintainable, and solves real problems.</p>
+      </div>
+    </section>
+  </div>
 
-  <hr class="divider"/>
+  <div class="sep"></div>
 
   <!-- CURRENTLY -->
-  <section id="currently">
-    <div class="section-label">Status</div>
-    <h2>Currently</h2>
-    <ul class="currently-list">
-      <li>Pursuing BSc. in Software Engineering</li>
-      <li>Learning Full Stack Web Development end-to-end</li>
-      <li>Building projects with React, Next.js, and TypeScript</li>
-      <li>Strengthening fundamentals in Data Structures &amp; Algorithms</li>
-      <li>Open to internship and collaboration opportunities</li>
-    </ul>
-  </section>
+  <div class="container">
+    <section id="currently" class="fade-in">
+      <div class="eyebrow">Status</div>
+      <h2 class="section-title">Currently</h2>
+      <p class="section-sub">What I am working on and focused on right now.</p>
+      <div class="status-grid">
+        <div class="status-item"><div class="status-dot"></div><span>Pursuing BSc. in Software Engineering</span></div>
+        <div class="status-item"><div class="status-dot"></div><span>Learning Full Stack Web Development end-to-end</span></div>
+        <div class="status-item"><div class="status-dot"></div><span>Building with React, Next.js, and TypeScript</span></div>
+        <div class="status-item"><div class="status-dot"></div><span>Strengthening Data Structures &amp; Algorithms</span></div>
+        <div class="status-item"><div class="status-dot"></div><span>Open to internships and collaboration</span></div>
+      </div>
+    </section>
+  </div>
 
-  <hr class="divider"/>
+  <div class="sep"></div>
 
   <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-label">Skills</div>
-    <h2>Technologies</h2>
-
-    <div class="skills-group">
-      <h3>Languages</h3>
-      <div class="skills-tags">
-        <span class="tag">C</span>
-        <span class="tag">C++</span>
-        <span class="tag">Python</span>
-        <span class="tag">Java</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">TypeScript</span>
+  <div class="container">
+    <section id="skills" class="fade-in">
+      <div class="eyebrow">Skills</div>
+      <h2 class="section-title">Technologies</h2>
+      <p class="section-sub">Languages, frameworks and tools I work with.</p>
+      <div class="skills-wrapper">
+        <div class="skill-group">
+          <div class="skill-group-label">Languages</div>
+          <div class="skill-chips">
+            <span class="chip">C</span>
+            <span class="chip">C++</span>
+            <span class="chip">Python</span>
+            <span class="chip">Java</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">TypeScript</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Frontend</div>
+          <div class="skill-chips">
+            <span class="chip">HTML5</span>
+            <span class="chip">CSS3</span>
+            <span class="chip">React</span>
+            <span class="chip">Next.js</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-label">Tools &amp; Platforms</div>
+          <div class="skill-chips">
+            <span class="chip">Git</span>
+            <span class="chip">GitHub</span>
+            <span class="chip">VS Code</span>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+  </div>
 
-    <div class="skills-group">
-      <h3>Frontend</h3>
-      <div class="skills-tags">
-        <span class="tag">HTML5</span>
-        <span class="tag">CSS3</span>
-        <span class="tag">React</span>
-        <span class="tag">Next.js</span>
-      </div>
-    </div>
-
-    <div class="skills-group">
-      <h3>Tools</h3>
-      <div class="skills-tags">
-        <span class="tag">Git</span>
-        <span class="tag">GitHub</span>
-        <span class="tag">VS Code</span>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider"/>
+  <div class="sep"></div>
 
   <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-label">Work</div>
-    <h2>Projects</h2>
-    <div class="projects-grid">
+  <div class="container">
+    <section id="projects" class="fade-in">
+      <div class="eyebrow">Work</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">A selection of things I have built.</p>
+      <div class="projects-grid">
 
-      <a href="https://github.com/anik1696/Devstack-project" target="_blank" class="project-card">
-        <span class="project-lang">JavaScript · React</span>
-        <h3>Devstack Project</h3>
-        <p>A web application built with HTML, CSS, JavaScript and React.</p>
-      </a>
+        <a href="https://github.com/anik1696/Devstack-project" target="_blank" class="project-card">
+          <div class="project-top">
+            <div class="project-icon">⚡</div>
+            <span class="project-arrow">↗</span>
+          </div>
+          <div class="project-name">Devstack Project</div>
+          <div class="project-desc">Web application built with HTML, CSS, JavaScript and React.</div>
+          <span class="project-lang">JavaScript · React</span>
+        </a>
 
-      <a href="https://github.com/anik1696/The-City-Pharma-Management-System" target="_blank" class="project-card">
-        <span class="project-lang">Vue.js</span>
-        <h3>City Pharma Management System</h3>
-        <p>A pharmacy management system web application.</p>
-      </a>
+        <a href="https://github.com/anik1696/The-City-Pharma-Management-System" target="_blank" class="project-card">
+          <div class="project-top">
+            <div class="project-icon">🏥</div>
+            <span class="project-arrow">↗</span>
+          </div>
+          <div class="project-name">City Pharma Management System</div>
+          <div class="project-desc">Pharmacy management system web application.</div>
+          <span class="project-lang">Vue.js</span>
+        </a>
 
-      <a href="https://github.com/anik1696/fitlog" target="_blank" class="project-card">
-        <span class="project-lang">TypeScript</span>
-        <h3>Fitlog</h3>
-        <p>A fitness tracking application built with TypeScript.</p>
-      </a>
+        <a href="https://github.com/anik1696/fitlog" target="_blank" class="project-card">
+          <div class="project-top">
+            <div class="project-icon">💪</div>
+            <span class="project-arrow">↗</span>
+          </div>
+          <div class="project-name">Fitlog</div>
+          <div class="project-desc">Fitness tracking application built with TypeScript.</div>
+          <span class="project-lang">TypeScript</span>
+        </a>
 
-      <a href="https://github.com/anik1696/TimeHiveAI" target="_blank" class="project-card">
-        <span class="project-lang">Python</span>
-        <h3>TimeHive AI</h3>
-        <p>An AI-powered time management application.</p>
-      </a>
+        <a href="https://github.com/anik1696/TimeHiveAI" target="_blank" class="project-card">
+          <div class="project-top">
+            <div class="project-icon">🤖</div>
+            <span class="project-arrow">↗</span>
+          </div>
+          <div class="project-name">TimeHive AI</div>
+          <div class="project-desc">AI-powered time management application.</div>
+          <span class="project-lang">Python</span>
+        </a>
 
-      <a href="https://github.com/anik1696/WPProject" target="_blank" class="project-card">
-        <span class="project-lang">JavaScript</span>
-        <h3>WP Project</h3>
-        <p>A JavaScript web project.</p>
-      </a>
+        <a href="https://github.com/anik1696" target="_blank" class="project-card">
+          <div class="project-top">
+            <div class="project-icon">📁</div>
+            <span class="project-arrow">↗</span>
+          </div>
+          <div class="project-name">View All Projects</div>
+          <div class="project-desc">See all repositories and contributions on GitHub.</div>
+          <span class="project-lang">GitHub</span>
+        </a>
 
-      <a href="https://github.com/anik1696" target="_blank" class="project-card">
-        <span class="project-lang">GitHub</span>
-        <h3>View All Projects →</h3>
-        <p>See all repositories on my GitHub profile.</p>
-      </a>
+      </div>
+    </section>
+  </div>
 
-    </div>
-  </section>
-
-  <hr class="divider"/>
+  <div class="sep"></div>
 
   <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-label">Contact</div>
-    <h2>Get in Touch</h2>
-    <p>Available for internships, freelance work, and collaboration opportunities.</p>
-    <div class="contact-links">
-      <div class="contact-row">
-        <span class="label">Email</span>
-        <a href="mailto:aniksahreyar@gmail.com">aniksahreyar@gmail.com</a>
+  <div class="container">
+    <section id="contact" class="fade-in">
+      <div class="eyebrow">Contact</div>
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="contact-wrapper">
+        <div class="contact-intro">
+          <p>I am currently open to internship positions, freelance projects and collaboration opportunities. If you have something in mind, feel free to reach out.</p>
+          <a href="mailto:aniksahreyar@gmail.com" class="btn btn-dark">Send an email</a>
+        </div>
+        <div class="contact-list">
+          <div class="contact-item">
+            <span class="c-label">Email</span>
+            <a href="mailto:aniksahreyar@gmail.com">aniksahreyar@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="c-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/sahreyar-ahmed-aa1402232" target="_blank">sahreyar-ahmed-aa1402232</a>
+          </div>
+          <div class="contact-item">
+            <span class="c-label">Facebook</span>
+            <a href="https://www.facebook.com/sahreyar.ahmed2003" target="_blank">sahreyar.ahmed2003</a>
+          </div>
+          <div class="contact-item">
+            <span class="c-label">GitHub</span>
+            <a href="https://github.com/anik1696" target="_blank">github.com/anik1696</a>
+          </div>
+        </div>
       </div>
-      <div class="contact-row">
-        <span class="label">LinkedIn</span>
-        <a href="https://www.linkedin.com/in/sahreyar-ahmed-aa1402232" target="_blank">sahreyar-ahmed-aa1402232</a>
-      </div>
-      <div class="contact-row">
-        <span class="label">Facebook</span>
-        <a href="https://www.facebook.com/sahreyar.ahmed2003" target="_blank">sahreyar.ahmed2003</a>
-      </div>
-      <div class="contact-row">
-        <span class="label">GitHub</span>
-        <a href="https://github.com/anik1696" target="_blank">github.com/anik1696</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
+  <!-- FOOTER -->
   <footer>
-    &copy; 2026 Sahreyar Ahmed
+    <p>© 2026 Sahreyar Ahmed</p>
+    <a href="https://github.com/anik1696" target="_blank">github.com/anik1696 ↗</a>
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
