@@ -1,428 +1,517 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sahreyar Ahmed | Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0f0f0f;
+      --gray-900: #1a1a1a;
+      --gray-700: #3d3d3d;
+      --gray-500: #6b6b6b;
+      --gray-300: #c4c4c4;
+      --gray-100: #f5f5f5;
+      --white: #ffffff;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ebebeb;
+      z-index: 100;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-500);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    /* SECTIONS */
+    section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+
+    section:first-of-type { padding-top: 9rem; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* HERO */
+    #hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    #hero .designation {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--gray-500);
+      margin-bottom: 1.5rem;
+    }
+
+    #hero p {
+      font-size: 1rem;
+      color: var(--gray-700);
+      max-width: 540px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .btn-primary:hover { background: var(--gray-900); }
+
+    .btn-outline {
+      border: 1px solid var(--gray-300);
+      color: var(--black);
+      background: transparent;
+    }
+
+    .btn-outline:hover { border-color: var(--black); background: var(--gray-100); }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid #ebebeb;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ABOUT */
+    #about h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    #about p {
+      color: var(--gray-700);
+      margin-bottom: 0.75rem;
+      font-size: 0.975rem;
+    }
+
+    /* CURRENTLY */
+    #currently h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .currently-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .currently-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.975rem;
+      color: var(--gray-700);
+    }
+
+    .currently-list li::before {
+      content: "→";
+      color: var(--accent);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* SKILLS */
+    #skills h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .skills-group {
+      margin-bottom: 1.75rem;
+    }
+
+    .skills-group h3 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-500);
+      margin-bottom: 0.75rem;
+    }
+
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.3rem 0.75rem;
+      background: var(--gray-100);
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray-900);
+    }
+
+    /* PROJECTS */
+    #projects h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      border: 1px solid #ebebeb;
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .project-card:hover {
+      border-color: var(--black);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .project-card h3 {
+      font-size: 0.925rem;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .project-card p {
+      font-size: 0.825rem;
+      color: var(--gray-500);
+      flex: 1;
+    }
+
+    .project-lang {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      width: fit-content;
+    }
+
+    /* CONTACT */
+    #contact h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    #contact p {
+      color: var(--gray-700);
+      margin-bottom: 1.5rem;
+      font-size: 0.975rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-row .label {
+      width: 90px;
+      font-weight: 600;
+      color: var(--gray-500);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-row a {
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid #e0e0e0;
+      transition: border-color 0.2s;
+    }
+
+    .contact-row a:hover { border-color: var(--black); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--gray-300);
+      border-top: 1px solid #ebebeb;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="logo.png">
 
-        </div>
-        <div class="menu">
-            <ul>
-                <li>
-                    <a href="#">HOME</a>
-                </li>
-                <li>
-                    <a href="about.html">About</a>
-                </li>
-                <li>
-                    <a href="service.html">Service</a>
-                </li>
-                <li>
-                    <a href="portfolio.html">portfolio</a>
-                </li>
-                <li>
-                    <a href="blog.html">Blog</a>
-                </li>
-                <li>
-                    <a href="testmonial.html">Testmonial</a>
-                </li>
-                <li>
-                    <a href="contact.html">Contact</a>
-                </li>
+  <nav>
+    <a href="#hero" class="nav-logo">Sahreyar Ahmed</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
+  <!-- HERO -->
+  <section id="hero">
+    <div class="section-label">Portfolio</div>
+    <h1>Sahreyar Ahmed</h1>
+    <p class="designation">BSc. Software Engineering &nbsp;·&nbsp; Sylhet, Bangladesh</p>
+    <p>Software engineering student focused on full-stack web development. I build clean, functional applications using modern JavaScript technologies.</p>
+    <div class="hero-links">
+      <a href="mailto:aniksahreyar@gmail.com" class="btn btn-primary">Get in touch</a>
+      <a href="https://github.com/anik1696" target="_blank" class="btn btn-outline">GitHub</a>
+      <a href="https://www.linkedin.com/in/sahreyar-ahmed-aa1402232" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+  </section>
 
-            </ul>
+  <hr class="divider"/>
 
-        </div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <h2>Background</h2>
+    <p>I am a Software Engineering undergraduate with a strong foundation in object-oriented programming and hands-on experience building full-stack web applications.</p>
+    <p>I work primarily with JavaScript-based stacks — from building responsive interfaces with React and Next.js to working with server-side logic and databases. I am driven by writing code that solves real problems cleanly and efficiently.</p>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- CURRENTLY -->
+  <section id="currently">
+    <div class="section-label">Status</div>
+    <h2>Currently</h2>
+    <ul class="currently-list">
+      <li>Pursuing BSc. in Software Engineering</li>
+      <li>Learning Full Stack Web Development end-to-end</li>
+      <li>Building projects with React, Next.js, and TypeScript</li>
+      <li>Strengthening fundamentals in Data Structures &amp; Algorithms</li>
+      <li>Open to internship and collaboration opportunities</li>
+    </ul>
+  </section>
+
+  <hr class="divider"/>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <h2>Technologies</h2>
+
+    <div class="skills-group">
+      <h3>Languages</h3>
+      <div class="skills-tags">
+        <span class="tag">C</span>
+        <span class="tag">C++</span>
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">TypeScript</span>
+      </div>
     </div>
 
-    <!-- banner -->
-    <div class="banner">
-        <div class="banner_content">
-            <div class="bc_header">
-                <h3>hello, I'm</h3>
-                <h1>Sahreyar Ahmed</h1>
-                <h3>Web Designer</h3>
-
-                <div class="bc_button">
-                    <a href="#">Hire Me</a>
-                    <a href="#">Download CV</a>
-                </div>
-                <div class="banner_icon">
-
-                    <a href="#"><i class="fa-brands fa-facebook-f facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in linkdin"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter twitter"></i></a>
-
-                </div>
-            </div>
-
-        </div>
-        <div class="banner_img">
-            <img src="anik.jpeg">
-        </div>
+    <div class="skills-group">
+      <h3>Frontend</h3>
+      <div class="skills-tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">React</span>
+        <span class="tag">Next.js</span>
+      </div>
     </div>
 
+    <div class="skills-group">
+      <h3>Tools</h3>
+      <div class="skills-tags">
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">VS Code</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- about -->
-    <div class="about">
-        <div class="about_count">
-            <ul>
-                <li class="one">
-                    <h3>124</h3>
-                    <h4>project 1</h4>
-                </li>
-                <li>
-                    <h3>124</h3>
-                    <h4>project 2</h4>
-                </li>
-                <li>
-                    <h3>124</h3>
-                    <h4>project 3</h4>
-                </li>
-            </ul>
-        </div>
-        <div class="info">
-            <div class="info_img">
-                
-            </div>
-            <div class="info_content">
-                <h2>Sahreyar Ahmed</h2>
-                <h3>web designer</h3>
-                <h4>I’m a Web Designer passionate about crafting visually engaging and user-friendly digital experiences.
-                    I blend creativity with modern design principles to build responsive, accessible, and impactful websites.
-                    Always learning and evolving, I aim to turn ideas into beautiful, functional online experiences.</h4>
-                <a href="#">Download CV</a>
-            </div>
-        </div>
+  <hr class="divider"/>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Work</div>
+    <h2>Projects</h2>
+    <div class="projects-grid">
+
+      <a href="https://github.com/anik1696/Devstack-project" target="_blank" class="project-card">
+        <span class="project-lang">JavaScript · React</span>
+        <h3>Devstack Project</h3>
+        <p>A web application built with HTML, CSS, JavaScript and React.</p>
+      </a>
+
+      <a href="https://github.com/anik1696/The-City-Pharma-Management-System" target="_blank" class="project-card">
+        <span class="project-lang">Vue.js</span>
+        <h3>City Pharma Management System</h3>
+        <p>A pharmacy management system web application.</p>
+      </a>
+
+      <a href="https://github.com/anik1696/fitlog" target="_blank" class="project-card">
+        <span class="project-lang">TypeScript</span>
+        <h3>Fitlog</h3>
+        <p>A fitness tracking application built with TypeScript.</p>
+      </a>
+
+      <a href="https://github.com/anik1696/TimeHiveAI" target="_blank" class="project-card">
+        <span class="project-lang">Python</span>
+        <h3>TimeHive AI</h3>
+        <p>An AI-powered time management application.</p>
+      </a>
+
+      <a href="https://github.com/anik1696/WPProject" target="_blank" class="project-card">
+        <span class="project-lang">JavaScript</span>
+        <h3>WP Project</h3>
+        <p>A JavaScript web project.</p>
+      </a>
+
+      <a href="https://github.com/anik1696" target="_blank" class="project-card">
+        <span class="project-lang">GitHub</span>
+        <h3>View All Projects →</h3>
+        <p>See all repositories on my GitHub profile.</p>
+      </a>
 
     </div>
+  </section>
 
+  <hr class="divider"/>
 
-    <!-- service -->
-
-    <div class="service">
-        <div class="service_content">
-            <h4>Service</h4>
-            <h2>What I Do</h2>
-            <p>I'm Sahreyar Ahmed, a committed developer focused on building lean and dependable software. With strong programming fundamentals and a practical approach to problem‑solving, I enjoy breaking tough challenges into clear, testable steps while
-                continuously sharpening my skills. </p>
-        </div>
-
-
-        <div class="service_list">
-
-            <div class="service_item">
-                <a href="#"><i class="fa-solid fa-crown"></i></a>
-                <h3>UX/UI Design</h3>
-            </div>
-            <div class="service_item">
-                <a href="#"><i class="fa-solid fa-mobile"></i></a>
-                <h3>App Design</h3>
-            </div>
-            <div class="service_item">
-                <a href="#"><i class="fa-solid fa-desktop"></i></a>
-                <h3>Web Design</h3>
-            </div>
-            <div class="service_item">
-                <a href="#"><i class="fa-solid fa-chart-simple "></i></a>
-                <h3>SEO Design</h3>
-            </div>
-        </div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <h2>Get in Touch</h2>
+    <p>Available for internships, freelance work, and collaboration opportunities.</p>
+    <div class="contact-links">
+      <div class="contact-row">
+        <span class="label">Email</span>
+        <a href="mailto:aniksahreyar@gmail.com">aniksahreyar@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span class="label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/sahreyar-ahmed-aa1402232" target="_blank">sahreyar-ahmed-aa1402232</a>
+      </div>
+      <div class="contact-row">
+        <span class="label">Facebook</span>
+        <a href="https://www.facebook.com/sahreyar.ahmed2003" target="_blank">sahreyar.ahmed2003</a>
+      </div>
+      <div class="contact-row">
+        <span class="label">GitHub</span>
+        <a href="https://github.com/anik1696" target="_blank">github.com/anik1696</a>
+      </div>
     </div>
+  </section>
 
-
-    <!-- skill -->
-
-    <div class="skill">
-        <div class="skill_content">
-            <h4>Skills</h4>
-            <h2>Why Choose me</h2>
-            <p>With strong programming fundamentals and a practical approach to problem‑solving, I enjoy breaking tough challenges into clear, testable steps while continuously sharpening my skills.
-            </p>
-        </div>
-
-        <div class="progress">
-            <div class="pi">
-
-                <h3>photoshop</h3>
-
-                <div class="p_bar">
-                    <div class="pb_child"></div>
-                </div>
-            </div>
-            <div class="pi">
-                <h3>web design</h3>
-                <div class="p_bar">
-                    <div class="pb_child"></div>
-                </div>
-            </div>
-            <div class="pi">
-                <h3>app design</h3>
-                <div class="p_bar">
-                    <div class="pb_child"></div>
-                </div>
-            </div>
-            <div class="pi">
-                <h3>seo</h3>
-                <div class="p_bar">
-                    <div class="pb_child"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- portfolio -->
-
-    <div class="portfolio">
-        <div class="portfolio_content">
-            <h4>Portfolio</h4>
-            <h2>Check My Wonderful Works</h2>
-            <p>I'm Sahreyar Ahmed, a committed developer focused on building lean and dependable software. With strong programming fundamentals and a practical approach to problem‑solving, I enjoy breaking tough challenges into clear, testable steps while
-                continuously sharpening my skills. My work blends engineering discipline with creative thinking so every project is both robust and pleasant to use. I aim for readable, maintainable code that scales gracefully and stands the test of time.
-                When I'm away from the editor, I explore new tools, contribute to open‑source when I can, and stay curious about emerging trends across the tech ecosystem.
-
-            </p>
-        </div>
-
-        <div class="portfolio_item">
-            <div class="porfolio_i_list">
-                <img src="folio-1.jpg">
-                <div class="pil_content">
-                    <h3>project title</h3>
-                    <div class="p_link">
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
-                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="porfolio_i_list">
-                <img src="folio-1.jpg">
-                <div class="pil_content">
-                    <h3>project title</h3>
-
-                    <div class="p_link">
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
-                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="porfolio_i_list">
-                <img src="folio-1.jpg">
-                <div class="pil_content">
-                    <h3>project title</h3>
-                    <div class="p_link">
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
-                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="porfolio_i_list">
-                <img src="folio-1.jpg">
-                <div class="pil_content">
-                    <h3>project title</h3>
-                    <div class="p_link">
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
-                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="porfolio_i_list">
-                <img src="folio-1.jpg">
-                <div class="pil_content">
-                    <h3>project title</h3>
-                    <div class="p_link">
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
-                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="porfolio_i_list">
-                <img src="folio-1.jpg">
-                <div class="pil_content">
-                    <h3>project title</h3>
-                    <div class="p_link">
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
-                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- testmonial  -->
-
-    <div class="testmonial">
-        <div class="testmonial_content">
-            <h4>testmonial</h4>
-            <h2>What People Say About Me</h2>
-            <p>I'm Sahreyar Ahmed, a committed developer focused on building lean and dependable software.
-            </p>
-        </div>
-        <div class="t_box">
-            <img src="anik.jpeg">
-            <p>I'm Sahreyar Ahmed, a committed developer focused on building lean and dependable software.
-
-            </p>
-            <h3>Sahreyar Ahmed</h3>
-            <h4>Web Designer</h4>
-        </div>
-    </div>
-
-
-    <!-- blog  -->
-
-    <div class="blog">
-        <div class="blog_content">
-            <h4>My Blogs</h4>
-            <h2>Latest News</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In alias dignissimos. rerum commodi corrupti, temporibus non quam.
-
-            </p>
-        </div>
-        <div class="blogs">
-            <div class="blog_item">
-                <img src="html.jpg">
-                <h2>Design for Everyone</h2>
-                <a href="#">Posted By: Admin</a>
-                <a href="#"><i class="fa-regular fa-thumbs-up"></i></a>
-                <a href="#"><i class="fa-regular fa-comment"></i></a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
-                <a class="tow" href="#">Read More..</a>
-            </div>
-            <div class="blog_item">
-                <img src="html.jpg">
-                <h2>Design for Everyone</h2>
-                <a href="#">Posted By: Admin</a>
-                <a href="#"><i class="fa-regular fa-thumbs-up"></i></a>
-                <a href="#"><i class="fa-regular fa-comment"></i></a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
-                <a class="tow" href="#">Read More..</a>
-            </div>
-            <div class="blog_item">
-                <img src="html.jpg">
-                <h2>Design for Everyone</h2>
-                <a href="#">Posted By: Admin</a>
-                <a href="#"><i class="fa-regular fa-thumbs-up"></i></a>
-                <a href="#"><i class="fa-regular fa-comment"></i></a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
-                <a class="tow" href="#">Read More..</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- simpl bar -->
-    <div class="simple_bar">
-        <div class="fst_content">
-            <h2>Hire Me For Your Project</h2>
-            <h3> Accusantium labore nostrum similique quisquam.</h3>
-        </div>
-        <div class="snd_content">
-            <a href="#">Hire Me!</a>
-        </div>
-    </div>
-
-
-    <!-- contact  -->
-
-    <div class="contact">
-        <div class="contact_content">
-            <h4>Contact</h4>
-            <h2>Get In Touch With Me</h2>
-            <p>I'm Sahreyar Ahmed, a committed developer focused on building lean and dependable software. With strong programming fundamentals and a practical approach to problem‑solving, I enjoy breaking tough challenges into clear, testable steps while
-                continuously sharpening my skills.</p>
-        </div>
-
-        <div class="contact_item">
-            <div class="contact_form">
-                <h3>Available 24/7</h3>
-                <h2>Get In Touch</h2>
-
-                <form>
-                    <input type="email" placeholder="Enter Email">
-                    <input type="password" placeholder="Password">
-                    <textarea placeholder="message"></textarea>
-                    <input type="submit" value="send message">
-                </form>
-            </div>
-            <div class="contact_address">
-                <div class="ca_iteam">
-                    <div class="ca_icon">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </div>
-                    <div class="ca_content">
-                        <h2>Location</h2>
-                        <p>Sylhet,Bangladesh </p>
-                    </div>
-
-                </div>
-                <div class="ca_iteam">
-                    <div class="ca_icon">
-                        <i class="fa-solid fa-mobile"></i>
-                    </div>
-                    <div class="ca_content">
-                        <h2>Phone Number</h2>
-                        <p>(123) 456-7890</p>
-                    </div>
-
-                </div>
-                <div class="ca_iteam">
-                    <div class="ca_icon">
-                        <i class="fa-regular fa-envelope"></i>
-                    </div>
-                    <div class="ca_content">
-                        <h2>Email Address</h2>
-                        <p> aniksahreyar@gmail.com</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- footer  -->
-
-
-    <div class="footer">
-        <div class="footer_content">
-            <h3>Copyright 2025 &copy; </h3>
-            <div class="cr_name">
-                <h3> Sahreyar Ahmed</h3>
-            </div>
-
-
-        </div>
-        <div class="footer_icon">
-            <a href="#"><i class="fa-brands fa-facebook-f facebook"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-linkedin-in linkdin"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter twitter"></i></a>
-
-        </div>
-    </div>
+  <footer>
+    &copy; 2026 Sahreyar Ahmed
+  </footer>
 
 </body>
-
 </html>
